@@ -1,0 +1,76 @@
+{
+    "result": "Success",
+    "qns": [
+        {
+            "content": "Define ohm's law",
+            "sasts": [{"id":"101", "title":"mytitle"},{"id":"102", "title":"mytitle2"}],
+            "u_id": "EL001",
+            "id": 1,
+            "choices": [
+                {
+                    "content": "potential difference between two ends of conductor is proportional to current through it",
+                    "id": 2
+                },
+                {
+                    "content": "potential difference between two ends of conductor is proportional to current through it at constant temperature and pressure",
+                    "id": 3
+                },
+                {
+                    "content": "potential difference between two ends of conductor is inversely proportional to current through it",
+                    "id": 4
+                },
+                {
+                    "content": "potential difference between two ends of conductor is equal to current through it at constant temperature and pressure",
+                    "id": 5
+                }
+            ]
+        },
+        {
+            "content": "The ohm's law is mathematically represented as",
+            "sasts": [{"id":"103", "title":"mytitle3"},{"id":"104", "title":"mytitle4"}],
+            "u_id": "EL002",
+            "id": 2,
+            "choices": [
+                {
+                    "content": "V=IR",
+                    "id": 6
+                },
+                {
+                    "content": "V=I/R",
+                    "id": 7
+                },
+                {
+                    "content": "V=R/I",
+                    "id": 8
+                },
+                {
+                    "content": "I=R/V",
+                    "id": 9
+                }
+            ]
+        },
+        {
+            "content": "The SI unit of resistance is",
+            "u_id": "EL003",
+            "id": 3,
+            "choices": [
+                {
+                    "content": "mho",
+                    "id": 10
+                },
+                {
+                    "content": "volt",
+                    "id": 11
+                },
+                {
+                    "content": "amps",
+                    "id": 12
+                },
+                {
+                    "content": "ohm",
+                    "id": 13
+                }
+            ]
+        }
+    ]
+}
