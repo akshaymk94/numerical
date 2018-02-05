@@ -1,13 +1,21 @@
+body {
+    background-color: white;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+
 .container-fluid {
     margin-bottom: 50px;
 }
 .box {
     width: 100%;
     height: 100%;
-    border: solid 1px black;
+  
     -webkit-border-radius: 10px;
     padding: 5px;
     margin-bottom: 10px;
+    background: #fff;
 }
 
 .page-header {
@@ -17,6 +25,7 @@
     display: inline-block;
     float: right;
     margin: 45px 20px 0 0;
+    color: #fff;
 }
 
 
@@ -34,15 +43,19 @@
 
 .boxItem1 {
     display: inline-block;
-    width: 70%;
+    width: 100%;
     height: 100%;
-    background: #eee;
     border: solid 1px grey;
     -webkit-border-radius: 10px 0 0 10px ;
     padding: 5px;
     
 }
 
+#main {
+    border: solid 1px pink;
+    width: 70%;
+    float: left;
+}
 .questionContainer {
     
 }
@@ -50,21 +63,33 @@
 .formSubmitBox {
   
     padding: 5px;
-    margin: 10px 5px;
+    margin: 10px 0 0 0 ;
 }
 
 .boxItem2 {
+    position: fixed;
+    top: 125px;
+    left: 1000px;
+    width: 20%;
+    border: solid 1px #aaa;
     display: inline-block;
     float: right;
-    padding: 20px 20px 30px;
+    padding: 20px 20px 20px;
 }
 
-.autoFillBox .inputAutoFill {
+ .inputAutoFill {
     display: inline;
+     padding: 5px;
+     
 }
 
-.autoFillBox .btnSubmit {
+ .btnSubmit {
     display: inline;
+    padding: 4px 8px;
+    background: #FFAE00;
+    -webkit-border-radius: 5px;
+    border: none;
+    font-weight: 600;
 }
 header {
     text-align: right;
@@ -100,4 +125,40 @@ footer {
 .inputAutoFill {
     display: inline-block;
     vertical-align: middle;
+}
+
+.lead {
+    cursor: pointer;
+}
+    
+
+
+#questionEditor {
+    display: block;
+    width: 100%;
+    resize: none;
+    -webkit-border-radius: 5px;
+}
+
+.choiceEditor {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    border: solid 1px #aaa;
+    -webkit-border-radius: 5px;
+    padding: 10px;
+}
+
+.btnEditedQuestion {
+    display: block;
+    width: 100%;
+    -webkit-border-radius: 5px;
+    border: solid 1px #aaa;
+    padding: 10px;
+}
+
+.choiceContainer {
+    border: solid 1px red;
+    padding: 5px;
+    margin: 10px 0;
 }

@@ -26,9 +26,16 @@ $(document).ready(function() {
                                             <header>\
                                                 <label id="boxLabel'+(i+1)+'">' + data.qns[i].u_id + '</label>\
                                             </header>\
-                                            <p class="lead">' + data.qns[i].content + '</p>\
+                                            <p class="lead" id="lead'+(i+1)+'">' + data.qns[i].content + '</p>\
+                                            <div class="choiceContainer">\
+                                                <form class="formChoices">\
+                                                    <input type="radio" id="radioFirstChoice" name="choice" class="choiceLeft" value="1stradiovalue">hello\
+                                                    <input type="radio" id="radioSecondChoice" name="choice" class="choiceRight" value="2ndradiovalue">hello\
+                                                    <input type="radio" id="radioThirdChoice" name="choice" class="choiceLeft" value="3rdradiovalue">hello\
+                                                    <input type="radio" id="radioFourthChoice" name="choice" class="choiceRight" value="4thradiovalue">hello\
+                                                </form>\
+                                            </div>\
                                             <footer id="foot"> '+ tagsText +'\
-                                                \
                                             </footer>\
                                         </div>\
                                         <div class="formSubmitBox">\
@@ -36,9 +43,8 @@ $(document).ready(function() {
                                             <button type="submit" class="btnSubmit">submit</button>\
                                         </div>\
                                     </div>\
-                                    <div class="boxItem2">\
-                                    </div>\
-                                </div>'
+                                </div>';
+                
                 $('#main').append(html_text);
                 
                 i++;
@@ -47,6 +53,12 @@ $(document).ready(function() {
             
         });
     }
+    
+    function editorRenderer() {
+        
+    }
+    
+    editorRenderer();
     
     //display id of tag value on closing the tag
     
@@ -102,6 +114,57 @@ $(document).ready(function() {
         
     });
     
+    $('body').on('click','.lead', function() {
+        var oldQuestion = $(this).html();
+        var questionId = $(this).attr("id");
+        $('#questionEditor').attr('questionFrom',questionId);
+        $('#questionEditor').html(oldQuestion);
+        
+        var oldOption1 = $(this).next().find("#radioFirstChoice").val();
+        var radioOption1Id = $(this).next().find("#radioFirstChoice").attr("id");
+        $('#txtFirstChoice').attr('choiceFrom', radioOption1Id);
+        $('#txtFirstChoice').val(oldOption1);
+        
+        var oldOption2 = $(this).next().find("#radioSecondChoice").val();
+        var radioOption2Id = $(this).next().find("#radioSecondChoice").attr("id");
+        $('#txtSecondChoice').attr('choiceFrom', radioOption2Id);
+        $('#txtSecondChoice').val(oldOption2);
+        
+        var oldOption3 = $(this).next().find("#radioThirdChoice").val();
+        var radioOption3Id = $(this).next().find("#radioThirdChoice").attr("id");
+        $('#txtThirdChoice').attr('choiceFrom', radioOption3Id);
+        $('#txtThirdChoice').val(oldOption3);
+        
+        var oldOption4 = $(this).next().find("#radioFourthChoice").val();
+        var radioOption4Id = $(this).next().find("#radioFourthChoice").attr("id");
+        $('#txtFourthChoice').attr('choiceFrom', radioOption4Id);
+        $('#txtFourthChoice').val(oldOption4);
+        
+    });
     
+    $('body').on('click','#btnSubmitEditedQuestion', function() {
+        var editedQuestion = $('#questionEditor').html();
+        var editedChoice1 = $('#txtFirstChoice').val();
+        var editedChoice2 = $('#txtSecondChoice').val();
+        var editedChoice3 = $('#txtThirdChoice').val();
+        var editedChoice4 = $('#txtFourthChoice').val();
+        var returnEditedQuestionTo = $('#questionEditor').attr("questionFrom");
+        var returnChoice1To = $('#txtFirstChoice').attr("choiceFrom");
+        var returnChoice2To = $('#txtSecondChoice').attr("choiceFrom");
+        var returnChoice3To = $('#txtThirdChoice').attr("choiceFrom");
+        var returnChoice4To = $('#txtFourthChoice').attr("choiceFrom");
+        $("#" +returnEditedQuestionTo+ "").html(editedQuestion);
+        $("#" +returnChoice1To + "").val(editedChoice1);
+        $("#" +returnChoice2To + "").val(editedChoice2);
+        $("#" +returnChoice3To + "").val(editedChoice3);
+        $("#" +returnChoice4To + "").val(editedChoice4);
+        $('#questionEditor').html("");
+        $('#txtFirstChoice').val("");
+        $('#txtSecondChoice').val("");
+        $('#txtThirdChoice').val("");
+        $('#txtFourthChoice').val("");
+        
+        
+    });
     
 });
