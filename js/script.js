@@ -38,13 +38,10 @@ $(document).ready(function() {
                                         </div>\
                                     </div>\
                                 </div>';
-                
                 $('#main').append(html_text);
-                
                 i++;
                 tagsText = "";
             });
-            
         });
     }
     
@@ -127,6 +124,7 @@ $(document).ready(function() {
         $('.formEditBox').removeClass('hidden').css('border','solid 1px #aaa');
         
         $('.boxItem2').removeClass('hidden');
+        $('#btnSubmitEditedQuestion').hide();
         $('.boxItem2').show();
         $('.ckeditor').hide();
         
@@ -134,7 +132,7 @@ $(document).ready(function() {
     });
     
     
-    //submit the edited question and options back to left container
+    //submit the edited question, options back to left container
     $('body').on('click','#btnSubmitEditedQuestion', function() {
         var editedQuestion = $('#questionEditor').html();
         var editedChoice1 = $('#txtFirstChoice').val();
@@ -156,12 +154,13 @@ $(document).ready(function() {
         $('#txtSecondChoice').val("");
         $('#txtThirdChoice').val("");
         $('#txtFourthChoice').val("");
-        
+        $('.boxItem2').hide();
         
     });
     
     $('#editor').ckeditor();
     
+    //trigger this function by clicking on the question/options on right container to edit them
     $('body').on('click','.rightContainerContent', function() {
         var toEdit = $(this).html();
         var returnId = $(this).attr('id');
@@ -171,6 +170,7 @@ $(document).ready(function() {
         $('.ckeditor').show();
     });
     
+    //save the updated question/option on the right container
     $('body').on('click','#applyUpdate', function() {
         var updatedText = $('#editor').val();
         var returnUpdateTo = $('#editor').attr('sendBackTo');
@@ -178,12 +178,15 @@ $(document).ready(function() {
         var ex = $("#" + returnUpdateTo + "").html();
         alert(ex);
         $('.ckeditor').hide();
+        $('#btnSubmitEditedQuestion').show();
         $('.formEditBox').show();
         updatedText = "";
     });
     
+    //cancel the update task on right container
     $('body').on('click','#cancelUpdate', function() {
         $('.ckeditor').hide();
+        
         $('.formEditBox').show();
     });
     
