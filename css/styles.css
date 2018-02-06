@@ -68,12 +68,12 @@ body {
 
 .boxItem2 {
     position: fixed;
-    top: 125px;
+    top: 20px;
     left: 1000px;
     width: 20%;
-    border: solid 1px #aaa;
     display: inline-block;
     float: right;
+    border: solid 1px #aaa;
     padding: 20px 20px 20px;
 }
 
@@ -134,26 +134,27 @@ footer {
 
 
 #questionEditor {
+    cursor: pointer;
     display: block;
     width: 100%;
     resize: none;
     -webkit-border-radius: 5px;
+    padding: 5px 0 5px 5px;
 }
 
 .choiceEditor {
+    cursor: pointer;
     display: block;
     width: 100%;
-    margin: 10px 0;
-    border: solid 1px #aaa;
-    -webkit-border-radius: 5px;
-    padding: 10px;
+    margin: 20px 0;
+    padding: 5px 0 5px 5px;
+    
 }
 
-.btnEditedQuestion {
+#btnSubmitEditedQuestion {
     display: block;
     width: 100%;
     -webkit-border-radius: 5px;
-    border: solid 1px #aaa;
     padding: 10px;
 }
 
@@ -161,4 +162,30 @@ footer {
     border: solid 1px red;
     padding: 5px;
     margin: 10px 0;
+}
+
+.rightContainerContent:hover {
+    background: #eee;
+}
+
+#editor {
+    display: block;
+    resize: none;
+}
+
+#applyUpdate {
+    padding: 5px;
+    margin: 5px 5px 5px 0;
+    background: #598DFF;
+    border: solid 1px #eee;
+    -webkit-border-radius: 5px;
+}
+
+#cancelUpdate {
+    padding: 5px;
+    margin: 5px;
+    background: #FABF4F;
+    border: none;
+    -webkit-border-radius: 5px;
+
 }

@@ -37,13 +37,20 @@
         
         <div class="aside">
         
-            <div class="boxItem2">
-                <textarea id="questionEditor" questionFrom="" rows="5" cols="30" placeholder="Quiz question"></textarea>
-                <input type="text" class="choiceEditor" id="txtFirstChoice" placeholder="choice 1" choiceFrom="">
-                <input type="text" class="choiceEditor" id="txtSecondChoice" placeholder="choice 2" choiceFrom="">
-                <input type="text" class="choiceEditor" id="txtThirdChoice" placeholder="choice 3" choiceFrom="">
-                <input type="text" class="choiceEditor" id="txtFourthChoice" placeholder="choice 4" choiceFrom="">
-                <input type="submit" id="btnSubmitEditedQuestion" value="SUBMIT QUESTION">
+            <div class="boxItem2 hidden">
+                <form class="formEditBox">
+                    <div id="questionEditor" class="rightContainerContent" questionFrom="" rows="5" cols="30" placeholder="Quiz question"></div>
+                    <div class="choiceEditor rightContainerContent" id="txtFirstChoice" choiceFrom=""></div>
+                    <div class="choiceEditor rightContainerContent" id="txtSecondChoice" choiceFrom=""></div>
+                    <div class="choiceEditor rightContainerContent" id="txtThirdChoice" choiceFrom=""></div>
+                    <div class="choiceEditor rightContainerContent" id="txtFourthChoice" choiceFrom=""></div>
+                    <input type="submit" id="btnSubmitEditedQuestion" value="SUBMIT QUESTION">
+                </form>
+                <div class="ckeditor">
+                    <textarea id="editor" rows="5" cols="24" sendBackTo=""></textarea>
+                    <button type="button" id="applyUpdate">Apply</button>
+                    <button type="button" id="cancelUpdate">Cancel</button>
+                </div>
             </div>
         </div>
         
@@ -53,7 +60,7 @@
     
     
         
-        <!--Load CDN first-->
+        <!--Load JQuery CDN first-->
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
         
         <!--if CDN doesn't work, serve up the local version-->
@@ -70,6 +77,12 @@
         
         <!-- Load the JQuery UI -->
         <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        
+        <!-- CKeditor plug in -->
+        <script src="ckeditor_4.8.0_standard/ckeditor/ckeditor.js"></script>
+        
+        <!-- CKeditor adapter for jquery -->
+        <script src="ckeditor_4.8.0_standard/ckeditor/adapters/jquery.js"></script>
         
         <!-- notify.js -->
         <script src="js/notify.min.js"></script>
