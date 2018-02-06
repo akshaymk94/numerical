@@ -158,7 +158,12 @@ $(document).ready(function() {
         
     });
     
-    $('#editor').ckeditor();
+    CKEDITOR.replace( 'editor', {
+			extraPlugins: 'mathjax',
+			mathJaxLib: 'http://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS_HTML',
+			height: 320,
+			filebrowserUploadUrl: '/ckeditor/img_upload/'
+		} );
     
     //trigger this function by clicking on the question/options on right container to edit them
     $('body').on('click','.rightContainerContent', function() {
@@ -172,7 +177,7 @@ $(document).ready(function() {
     
     //save the updated question/option on the right container
     $('body').on('click','#applyUpdate', function() {
-        var updatedText = $('#editor').val();
+        var updatedText = CKEDITOR.instances.editor.getData();
         var returnUpdateTo = $('#editor').attr('sendBackTo');
         $("#" + returnUpdateTo + "").html(updatedText);
         var ex = $("#" + returnUpdateTo + "").html();
