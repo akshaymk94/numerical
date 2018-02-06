@@ -2,7 +2,7 @@
     "result": "Success",
     "qns": [
         {
-            "content": "Define ohm's law",
+            "content": "<p><span class="math-tex">\(x = {-b \pm \sqrt{b^2-4ac} \over 2a}\)</span></p>",
             "sasts": [{"id":"101", "title":"mytitle"},{"id":"102", "title":"mytitle2"}],
             "u_id": "EL001",
             "id": 1,
