@@ -36,7 +36,7 @@ body {
 
 .box {
     position: relative;
-    background: grey;
+    background: #eee;
     border: solid 1px #aaa;
     margin: 10px auto;
 }
@@ -60,16 +60,36 @@ body {
 .rendererBox {
     display: block;
 }
+
+.explanationRenderer {
+    display: none;
+}
+
 .questionContent {
     margin: 10px 0;
-    padding: 5px;
+    padding: 5px 10px;
     background: #fff;
-    /*-webkit-border-radius: 10px;*/
-    font-size: 18px;
+    -webkit-border-radius: 10px;
+    
+}
+
+.questionRenderer {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.answerRenderer {
+    font-size: 16px;
+    
+}
+
+.explanationRenderer {
+    font-size: 16px;
+    margin-top: 0;
 }
 
 .questionContent:hover {
-    border: solid 1px #aaa;
+    border: solid 1px #111;
 }
 
 .questionContent strong:hover {
@@ -77,7 +97,7 @@ body {
 }
 
 .iconAdd {
-    font-size: 28px;
+    font-size: 20px;
 }
 
 #editArea {
@@ -87,4 +107,8 @@ body {
 
 .btn {
     margin: 10px 0;
+}
+
+.btnSolution {
+    margin-top: 0;   
 }
