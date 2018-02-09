@@ -1,191 +1,90 @@
 body {
-    background-color: white;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: left top;
+    margin: 0;
+    padding: 0;
 }
 
 .container-fluid {
-    margin-bottom: 50px;
-}
-.box {
-    width: 100%;
-    height: 100%;
-  
-    -webkit-border-radius: 10px;
-    padding: 5px;
-    margin-bottom: 10px;
-    background: #fff;
+    margin: 0;
+    padding: 0;
 }
 
 .page-header {
-    display: inline;
+    padding: 0;
+    margin: 0;
+    background: darkred;
 }
-.quizTitle {
+
+#fabgrad {
+    color: white;
+    display: inline-block;
+    margin: 12px 10px;
+}
+
+#addQandABox {
+    display: inline-block;
+    -webkit-border-radius: 10px;
+    font-weight: 500;
+    margin:0 0 10px 30px;
+}
+
+#headerQandA {
+    color: white;
     display: inline-block;
     float: right;
-    margin: 45px 20px 0 0;
-    color: #fff;
+    margin: 12px 10px;
 }
 
-
-
-
-.logo_main {
-    display: inline-block;
-    float: left;
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    width: 16%;
-    z-index: 10 !important;
-}
-
-.boxItem1 {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    border: solid 1px grey;
-    -webkit-border-radius: 10px 0 0 10px ;
-    padding: 5px;
-    
-}
-
-#main {
-    border: solid 1px pink;
-    width: 70%;
-    float: left;
-}
-.questionContainer {
-    
-}
-
-.formSubmitBox {
-  
-    padding: 5px;
-    margin: 10px 0 0 0 ;
-}
-
-.boxItem2 {
-    position: fixed;
-    top: 20px;
-    left: 1000px;
-    width: 20%;
-    display: inline-block;
-    float: right;
+.box {
+    position: relative;
+    background: grey;
     border: solid 1px #aaa;
-    padding: 20px 20px 20px;
+    margin: 10px auto;
 }
 
- .inputAutoFill {
-    display: inline;
-     padding: 5px;
-     
-}
-
- .btnSubmit {
-    display: inline;
-    padding: 4px 8px;
-    background: #FFAE00;
-    -webkit-border-radius: 5px;
-    border: none;
-    font-weight: 600;
-}
-header {
-    text-align: right;
-}
-
-h3 {
-    text-align: center;
-    font-weight: bold;
-}
-#boxLabel {
-    padding: 10px;
-    
-}
-
-footer {
-    margin-left: 10px;
-}
-
-
-.tags {
-    font-size: 14px;
-    padding: 3px;
-    margin: 5px 5px;
-    text-align: center;
-    background: #84A9FF;
-    font-weight: bold;
-} 
-
-.glyphicon:hover {
-    cursor: pointer;
-}
-
-.inputAutoFill {
+.glyphicon-remove {
     display: inline-block;
-    vertical-align: middle;
-}
-
-.lead {
-    cursor: pointer;
-}
-    
-
-
-#questionEditor {
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    resize: none;
-    -webkit-border-radius: 5px;
-    padding: 5px 0 5px 5px;
-}
-
-.choiceEditor {
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    margin: 20px 0;
-    padding: 5px 0 5px 5px;
-    
-}
-
-#btnSubmitEditedQuestion {
-    display: block;
-    width: 100%;
-    -webkit-border-radius: 5px;
-    padding: 10px;
-}
-
-.choiceContainer {
-    border: solid 1px red;
+    float: right;
+    margin: 5px 0;
     padding: 5px;
+    background: #aaa;
+}
+
+.glyphicon-remove:hover {
+    cursor: pointer;
+    border: solid 1px #aaa;
+    background: red;
+    color: #fff;
+    -webkit-border-radius: 3px;
+}
+
+.rendererBox {
+    display: block;
+}
+.questionContent {
     margin: 10px 0;
+    padding: 5px;
+    background: #fff;
+    /*-webkit-border-radius: 10px;*/
+    font-size: 18px;
 }
 
-.rightContainerContent:hover {
-    background: #eee;
+.questionContent:hover {
+    border: solid 1px #aaa;
 }
 
-#editor {
+.questionContent strong:hover {
+    cursor: pointer;
+}
+
+.iconAdd {
+    font-size: 28px;
+}
+
+#editArea {
     display: block;
-    resize: none;
-}
-
-#applyUpdate {
-    padding: 5px;
-    margin: 5px 5px 5px 0;
-    background: #598DFF;
-    border: solid 1px #eee;
-    -webkit-border-radius: 5px;
-}
-
-#cancelUpdate {
-    padding: 5px;
     margin: 5px;
-    background: #FABF4F;
-    border: none;
-    -webkit-border-radius: 5px;
+}
 
+.btn {
+    margin: 10px 0;
 }

@@ -1,0 +1,29 @@
+{
+    "question_details": [
+        {
+            "qn_id": 1,
+            "qn_content": "what is Newton's third law?",
+            "ans_id": 2,
+            "ans_content": "Every action has an equal and opposite reaction.",
+            "soln_id": 3,
+            "soln_content": "this is the solution content for newton's third law."
+        },
+        {
+            "qn_id": 4,
+            "qn_content": "what is Newton's third law?",
+            "ans_id": 5,
+            "ans_content": "Every action has an equal and opposite reaction.",
+            "soln_id": 6,
+            "soln_content": "this is the solution content for newton's third law."
+        },
+        {
+            "qn_id": 7,
+            "qn_content": "what is Newton's third law?",
+            "ans_id": 8,
+            "ans_content": "Every action has an equal and opposite reaction.",
+            "soln_id": 9,
+            "soln_content": "this is the solution content for newton's third law."
+        }
+        
+    ]
+}

@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-
 <html>
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>FabGrad | Quiz Questions</title>
-        
-        <!--normalize.css-->
-        <!--<link rel="stylesheet" type="text/css" href="css/normalize.css">-->
+        <title>Numerical</title>
         
         <link rel="icon" href="img/favicon.ico">
         
@@ -23,42 +20,23 @@
     </head>
     
     <body>
-        <!--<img class="cover" src="img/home-job.jpg"> -->
+        
         <div class="container-fluid">
             <div class="page-header">
-                <img class="logo_main" src="img/logofront.png">
-                <h3 class="quizTitle">Quiz Questions</h3>
-            </div>
-        </div>
-            
-        <div id="main" class="container .content">
-
-        </div>    
-        
-        <div class="aside">
-        
-            <div class="boxItem2 hidden">
-                <form class="formEditBox">
-                    <div id="questionEditor" class="rightContainerContent" questionFrom="" rows="5" cols="30" placeholder="Quiz question"></div>
-                    <div class="choiceEditor rightContainerContent" id="txtFirstChoice" choiceFrom=""></div>
-                    <div class="choiceEditor rightContainerContent" id="txtSecondChoice" choiceFrom=""></div>
-                    <div class="choiceEditor rightContainerContent" id="txtThirdChoice" choiceFrom=""></div>
-                    <div class="choiceEditor rightContainerContent" id="txtFourthChoice" choiceFrom=""></div>
-                    <input type="button" id="btnSubmitEditedQuestion" value="SUBMIT QUESTION">
-                </form>
-                <div class="ckeditor">
-                    <textarea id="editor" rows="5" cols="24" sendBackTo=""></textarea>
-                    <button type="button" id="applyUpdate">Apply</button>
-                    <button type="button" id="cancelUpdate">Cancel</button>
-                </div>
+                <h2 id="fabgrad">FABGRAD</h2>
+                <button id="addQandABox" class="btn btn-primary">Add Q &amp; A</button>
+                <h3 id="headerQandA">Questions &amp; Answers</h3>
             </div>
         </div>
         
+        <div id="QandAContainer" class="container-fluid">
             
             
-            
+        </div>
     
-    
+        
+        
+        
         
         <!--Load JQuery CDN first-->
         <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -86,13 +64,9 @@
         <!-- CKeditor adapter for jquery -->
         <script src="ckeditor/adapters/jquery.js"></script>
         
-        
-        
         <!-- notify.js -->
         <script src="js/notify.min.js"></script>
         
         <script src="js/script.js"></script>
-        
     </body>
-
 </html>
