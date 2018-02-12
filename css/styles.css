@@ -1,6 +1,19 @@
-body {
+/*body {
     margin: 0;
     padding: 0;
+}*/
+
+#headerContainer {
+    overflow: hidden;
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 100;
+    
+}
+
+#QandAContainer {
+    margin-top: 60px;
 }
 
 .container-fluid {
@@ -42,8 +55,9 @@ body {
 }
 
 .glyphicon-remove {
+    position: relative;
     display: inline-block;
-    float: right;
+    /*float: right;*/
     margin: 5px 0;
     padding: 5px;
     background: #aaa;
@@ -90,6 +104,12 @@ body {
 
 .questionContent:hover {
     border: solid 1px #111;
+}
+
+.lblquestionId {
+    display: inline-block;
+    margin: 0 95% 0 5px;
+    
 }
 
 .questionContent strong:hover {

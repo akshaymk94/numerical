@@ -2,17 +2,17 @@
     "question_details": [
         {
             "qn_id": 1,
-            "qn_content": "what is Newton's third law?",
+            "qn_content": "what is Newton's first law?",
             "ans_id": 2,
-            "ans_content": "Every action has an equal and opposite reaction.",
+            "ans_content": "Every first action has an equal and opposite reaction.",
             "soln_id": 3,
             "soln_content": "this is the solution content for newton's third law."
         },
         {
             "qn_id": 4,
-            "qn_content": "what is Newton's third law?",
+            "qn_content": "what is Newton's second law?",
             "ans_id": 5,
-            "ans_content": "Every action has an equal and opposite reaction.",
+            "ans_content": "Every second action has an equal and opposite reaction.",
             "soln_id": 6,
             "soln_content": "this is the solution content for newton's third law."
         },
@@ -20,10 +20,17 @@
             "qn_id": 7,
             "qn_content": "what is Newton's third law?",
             "ans_id": 8,
-            "ans_content": "Every action has an equal and opposite reaction.",
+            "ans_content": "Every third action has an equal and opposite reaction.",
             "soln_id": 9,
             "soln_content": "this is the solution content for newton's third law."
+        },
+        {
+            "qn_id": 10,
+            "qn_content": "is this question still standing alone?",
+            "ans_id": "",
+            "ans_content": "",
+            "soln_id": "",
+            "soln_content": ""
         }
-        
     ]
 }
