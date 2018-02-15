@@ -8,7 +8,11 @@ $(document).ready(function() {
     var edit = 0;
     var noOfEditors = 0;
     var btnSolution = 0;
+    var tagSelector = 0;
+    var submitTags = 0;
     var saveQuestions=[];
+    
+    var selectId = "";
     
     var qn_id = 0;
     var qn_content = "";
@@ -16,11 +20,13 @@ $(document).ready(function() {
     var ans_content = "";
     var soln_id = 0;
     var soln_content = "";
+    var tags = [];
+    var preselectedTags = [];
     
     function getQuestions() {
-        $.getJSON('json/info.json', function(data) {
+        $.getJSON('../json/info.json', function(data) {
             var tempo = data["question_details"]; 
-
+            
             for(var i = 0; i < tempo.length; i++) {
                 var obj = {}
                 obj["qn_id"] = tempo[i]["qn_id"]
@@ -32,10 +38,27 @@ $(document).ready(function() {
                 saveQuestions.push(obj);
             }
             boxRenderer();
+            
         });
     }
     
     getQuestions();
+    
+    function getTags() {
+        $.getJSON('../json/tags.json', function(tagsList) {
+            var temp = tagsList["tags"];
+            for(var i = 0; i < temp.length; i++) {
+                var obj = {}
+                obj["id"] = temp[i]["id"]
+                obj["name"] = temp[i]["name"]
+                tags.push(obj);
+            }
+            
+        });
+        
+    }
+    getTags();
+    
     
     function boxRenderer() {
         $.each(saveQuestions, function(index, value) {
@@ -45,7 +68,8 @@ $(document).ready(function() {
             ans_content = value["ans_content"] == "" ? "Answer" : value["ans_content"];
             soln_id = value["soln_id"];
             soln_content = value["soln_content"] == "" ? "Explanation" : value["soln_content"];
-            myNewFunction(qn_id, qn_content, ans_id, ans_content, soln_id, soln_content);
+            
+            myNewFunction(qn_id, qn_content, ans_id, ans_content, soln_id, soln_content, tags, preselectedTags);
             
             qn_id = 0;
             qn_content = "";
@@ -73,36 +97,53 @@ $(document).ready(function() {
                                     <div class="explanationRenderer questionContent" id="explanation'+(explanation+1)+'" boxId="box'+(num + 1)+'">\
                                         <span class="iconAdd">&plus;</span>\
                                         <strong class="explanation" parentId="explanation'+(explanation+1)+'" questionId="'+qn_id+'" elementId="'+ soln_id +'" boxId="box'+(num + 1)+'">'+ soln_content +'</strong>\
-                                    </div>\
+                                    </div><br>\
+                                    <select id="tagSelector'+(tagSelector+1)+'" multiple class="tagSelector" boxId="box'+(num + 1)+'" questionId="'+qn_id+'"></select>\
+                                    <button id="submitTags'+ (submitTags+1) +'" type="button" class="btn btn-success btnSubmitTags" selectId="'+(tagSelector+1)+'" boxId="box'+(num + 1)+'">Submit Tags</button>\
                                 </div>\
                             </div>';
+        
             
             $('#QandAContainer').prepend(mynewbox);
+        
+            selectId = $("tagSelector"+(tagSelector+1)+"").attr('id');
             
+            convertSelectToChosen(selectId);
+            
+            
+           
             function displayBoxes() {
+                var boxId = $("#question"+(question+1)+"").attr('boxId');
                 if($("#question"+(question+1)+"").find('.question').html() == "Question") {
-                    alert("inside question");
                     $("#question"+(question+1)+"").siblings().hide();
                 } 
                 else
                 {
+                    /*$('.tagSelector').show();*/
                     $("#question"+(question+1)+"").find('.iconAdd').hide();
                     if($("#answer"+(answer+1)+"").find('.answer').html() == "Answer") {
-                        alert("inside answer");
-                        var boxId = $("#answer"+(answer+1)+"").attr('boxId');
                         $("#answer"+(answer+1)+"").show();
                         $("#"+ boxId +"").find('.btnSolution').hide();
                         $("#"+ boxId +"").find('.explanationRenderer').hide();
+                        /*$("#"+ boxId +"").find('.tagSelector').hide();
+                        $("#"+ boxId +"").find('.btnSubmitTags').hide();*/
+                        
                     } 
                     else {
                         $("#answer"+(answer+1)+"").find('.iconAdd').hide();
                         if ($("#explanation"+(explanation+1)+"").find('.explanation').html() == "Explanation") { 
-                            alert("inside explanation");
-                            //var boxId = $("#explanation"+(explanation+1)+"").attr('boxId');
                             $("#explanation"+(explanation+1)+"").show();
+                            $("#"+ boxId +"").find('.btnSolution').hide();
+                            alert("between boxid");
+                            /*$("#"+ boxId +"").find('.tagSelector').hide();
+                            $("#"+ boxId +"").find('.btnSubmitTags').hide();*/
+                        
                         }
                         else {
                             $("#explanation"+(explanation+1)+"").find('.iconAdd').hide();
+                            /*$("#"+ boxId +"").find('.btnSolution').show();
+                            $("#"+ boxId +"").find('.tagSelector').show();
+                            /*$("#"+ boxId +"").find('.btnSubmitTags').hide();*/
                         } 
                     }
                 }
@@ -115,7 +156,33 @@ $(document).ready(function() {
                 answer++;
                 explanation++;
                 btnSolution++;
+                tagSelector++;
+                submitTags++
     }
+    
+    
+    function convertSelectToChosen(selectId) {
+                $("#"+ selectId +"").chosen({
+                    width: "20%",
+                    no_results_text: "oops! search failed!",
+                    /*max_selected_options: 2,*/
+                    allow_single_deselect: true
+                });
+                populateChosen(selectId);
+            }
+        
+            function populateChosen(selectId) {
+                $.each(tags, function(index,value) {
+
+                    var newOption = '<option id="'+ value["id"] +'">'+ value["name"] +'</option>';
+                    $("#"+ selectId +"").append(newOption);
+                });
+
+                
+            }
+            
+    
+    
     
     $('body').on('click','#addQandABox', function() {
         qn_id = 0;
@@ -124,11 +191,14 @@ $(document).ready(function() {
         ans_content = "Answer";
         soln_id = 0;
         soln_content = "Explanation";
+        /*tags = "no tags!";
+        preselectedTags = "no preselected tags!";*/
         
         myNewFunction(qn_id, qn_content, ans_id, ans_content, soln_id, soln_content);
-        
+        /*populateChosen();*/
         $(this).attr('disabled', true);
-        
+        $('html, body').animate({scrollTop : 0},200);
+		return false;
     });
     
     $('body').on('click','.glyphicon-remove', function() {
@@ -183,18 +253,17 @@ $(document).ready(function() {
         var textSentBack = $("#"+ sendBackTo +"").find('strong').html();
         noOfEditors--;
         if($("#"+sendBackTo+"").hasClass('questionRenderer')) {
-            alert("will show answer renderer");
             $("#"+rootBox+"").find('.answerRenderer').show();
         }
         if($("#"+sendBackTo+"").hasClass('answerRenderer')) {
-            alert("will show explanation renderer");
             $("#"+rootBox+"").find('.explanationRenderer').show();
         }
         if($("#"+sendBackTo+"").hasClass('explanationRenderer')) {
-            alert("will show btnSolution");
             $("#"+sendBackTo+"").hide();
             $("#"+rootBox+"").find('.btnSolution').show();
             $('#addQandABox').attr('disabled',false);
+            $("#"+rootBox+"").find('.tagSelector').show();
+            $("#"+rootBox+"").find('.btnSubmitTags').show();
         }
         console.log("questionId : " + questionId + ", " + "elementId : " + elementId + ", " + "textSentBack : " + textSentBack);
         $("#" + editorId + "").remove();

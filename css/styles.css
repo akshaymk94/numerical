@@ -41,10 +41,11 @@
 }
 
 #headerQandA {
+    position: relative;
     color: white;
     display: inline-block;
     float: right;
-    margin: 12px 10px;
+    margin: 20px;
 }
 
 .box {
