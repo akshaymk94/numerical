@@ -63,7 +63,7 @@ $(document).ready(function() {
     }
     
     function populateChosen() {
-        alert("inside populate");
+        //alert("inside populate");
         //$('.tagSelector').append('<option></option>');
         $.each(tags, function(index,value) {
             var newOption = '<option id="'+ value["id"] +'">'+ value["name"] +'</option>';
@@ -75,7 +75,7 @@ $(document).ready(function() {
     function convertSelectToChosen(rootBox) {
         
         
-                alert("inside convert");
+                //alert("inside convert");
                 $("#"+ rootBox +"").find('.tagSelector').chosen({
                     width: "20%",
                     no_results_text: "oops! search failed!",
@@ -135,7 +135,7 @@ $(document).ready(function() {
         
             
             $('#QandAContainer').prepend(mynewbox);
-            alert("constructed box");
+           // alert("constructed box");
             
             
             
