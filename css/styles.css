@@ -134,7 +134,9 @@
     margin-top: 0;   
 }
 
-
+.tagSelector {
+    display: inline-block;
+}
 
 .btnSubmitTags {
     display: inline-block;
