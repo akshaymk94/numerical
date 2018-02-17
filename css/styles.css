@@ -133,3 +133,9 @@
 .btnSolution {
     margin-top: 0;   
 }
+
+
+
+.btnSubmitTags {
+    display: inline-block;
+}
