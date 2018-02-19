@@ -35,6 +35,7 @@ $(document).ready(function() {
                 obj["ans_content"] = tempo[i]["ans_content"]
                 obj["soln_id"] = tempo[i]["soln_id"]
                 obj["soln_content"] = tempo[i]["soln_content"]
+                obj["preselectedTags"] = tempo[i]["preselectedTags"]
                 saveQuestions.push(obj);
             }
             boxRenderer();
@@ -63,20 +64,32 @@ $(document).ready(function() {
             ans_content = value["ans_content"] == "" ? "Answer" : value["ans_content"];
             soln_id = value["soln_id"];
             soln_content = value["soln_content"] == "" ? "Explanation" : value["soln_content"];
-            constructQuestionBox(qn_id, qn_content, ans_id, ans_content, soln_id, soln_content, tags, preselectedTags);
+            preselectedTags = value["preselectedTags"] == null ? [] : value["preselectedTags"];
+            constructQuestionBox(qn_id, qn_content, ans_id, ans_content, soln_id, soln_content, preselectedTags);
             qn_id = 0;
             qn_content = "";
             ans_id = 0;
             ans_content = "";
             soln_id = 0;
             soln_content = "";
+            preselectedTags = [];
         });
     }
     
-    function constructQuestionBox(qn_id, qn_content, ans_id, ans_content, soln_id, soln_content) {
-        var mynewbox = '<div class="container box" id="box'+(num + 1)+'">\
+    function constructQuestionBox(qn_id, qn_content, ans_id, ans_content, soln_id, soln_content, preselectedTags) {
+        var selectedTags = [];
+        var i = 0;
+        if(preselectedTags.length > 0) {
+            $.each(tags, function(index, value) {
+                if(value["id"] == preselectedTags[i]) {
+                    selectedTags += '<span id="'+value["id"]+'" class="tagsSelected" questionId="'+qn_id+'" boxId="box'+(num + 1)+'">'+value["name"]+'<span class="glyphicon glyphicon-remove closeTag" tagToRemove="'+value["id"]+'"></span></span>';
+                    i++;
+                }
+            });
+        }
+        var questionBox = '<div class="container box" id="box'+(num + 1)+'" preselectedTags="'+preselectedTags+'">\
                             <label class="lblquestionId">' + qn_id + '</label>\
-                            <div class="glyphicon glyphicon-remove" toRemove="box'+(num + 1)+'" questionToRemoveId="' + qn_id + '"></div><br>\
+                            <div class="glyphicon glyphicon-remove closeQuestionBox" toRemove="box'+(num + 1)+'" questionToRemoveId="' + qn_id + '"></div><br>\
                             <div class="rendererBox">\
                                 <div class="questionRenderer questionContent" id="question'+(question+1)+'" boxId="box'+(num + 1)+'">\
                                     <span class="iconAdd">&plus;</span>\
@@ -90,18 +103,20 @@ $(document).ready(function() {
                                 <div class="explanationRenderer questionContent" id="explanation'+(explanation+1)+'" boxId="box'+(num + 1)+'">\
                                     <span class="iconAdd">&plus;</span>\
                                     <strong class="explanation" parentId="explanation'+(explanation+1)+'" questionId="'+qn_id+'" elementId="'+ soln_id +'" boxId="box'+(num + 1)+'">'+ soln_content +'</strong>\
-                                </div><br>\
-                                <select id="tagSelector'+(tagSelector+1)+'" multiple class="tagSelector" boxId="box'+(num + 1)+'" questionId="'+qn_id+'"></select>\
-                                <button id="submitTags'+ (submitTags+1) +'" type="button" selectId="tagSelector'+(tagSelector+1)+'" class="btn btn-success btnSubmitTags" boxId="box'+(num + 1)+'">Submit Tags</button>\
+                                </div>\
+                                <div class="tagContainer" boxId="box'+(num + 1)+'">\
+                                    <div class="fetchedTags" boxId="box'+(num + 1)+'">'+ selectedTags +'\
+                                    </div>\
+                                    \
+                                </div>\
                             </div>\
                         </div>';
 
-        $('#QandAContainer').prepend(mynewbox);
-
-        $.each(tags, function(index,value) {
-            var newOption = '<option id="'+ value["id"] +'">'+ value["name"] +'</option>';
-            $("#tagSelector"+(tagSelector+1)+"").append(newOption).trigger("chosen:updated");
-        });
+        $('#QandAContainer').prepend(questionBox);
+        //console.log(preselectedTags);
+        
+        
+        
 
         var boxId = $("#question"+(question+1)+"").attr('boxId');
         if($("#question"+(question+1)+"").find('.question').html() == "Question") {
@@ -130,12 +145,7 @@ $(document).ready(function() {
                 }
                 else {
                     $("#explanation"+(explanation+1)+"").find('.iconAdd').hide();
-                    $("#tagSelector"+(tagSelector+1)+"").chosen({
-                        width: "30%",
-                        no_results_text: "oops! search failed!",
-                        allow_single_deselect: true
-                    });
-                    $("#"+ boxId +"").find('.btnSubmitTags').attr('disabled',true);
+                    
                 } 
             }
         }
@@ -155,13 +165,13 @@ $(document).ready(function() {
         ans_content = "Answer";
         soln_id = 0;
         soln_content = "Explanation";
-        constructQuestionBox(qn_id, qn_content, ans_id, ans_content, soln_id, soln_content);
+        constructQuestionBox(qn_id, qn_content, ans_id, ans_content, soln_id, soln_content, preselectedTags);
         $(this).attr('disabled', true);
         $('html, body').animate({scrollTop : 0},200);
 		return false;
     });
     
-    $('body').on('click','.glyphicon-remove', function() {
+    $('body').on('click','.closeQuestionBox', function() {
         var elementToRemove = $(this).attr('toRemove');
         var questionToRemoveId = $(this).attr('questionToRemoveId');
         $("#" + elementToRemove + "").remove();
@@ -221,7 +231,7 @@ $(document).ready(function() {
             $("#"+sendBackTo+"").hide();
             $("#"+rootBox+"").find('.btnSolution').append('<br>').show();
             $('#addQandABox').attr('disabled',false);
-            $("#"+rootBox+"").find('.tagSelector').chosen({
+            /*$("#"+rootBox+"").find('.tagSelector').chosen({
                 width: "30%",
                 no_results_text: "oops! search failed!",
                 allow_single_deselect: true
@@ -229,8 +239,8 @@ $(document).ready(function() {
             
             $("#"+rootBox+"").find('.btnSubmitTags').show();
             if($("#"+rootBox+"").find('.tagSelector').val() == null) {
-                $("#"+rootBox+"").find('.btnSubmitTags').attr('disabled', true);
-            }
+                $("#"+rootBox+"").find('.btnSubmitTags').attr('disabled', true);*
+            }*/
         }
         console.log("questionId : " + questionId + ", " + "elementId : " + elementId + ", " + "textSentBack : " + textSentBack);
         $("#" + editorId + "").remove();
@@ -257,9 +267,9 @@ $(document).ready(function() {
     $('body').on('click','.btnSubmitTags', function() {
         var rootBox = $(this).attr('boxId');
         var selectId = $(this).attr('selectId');
-        var questionId = $("#"+ rootBox +"").find('.question').attr('questionId');
+        var questionId = $(this).attr('questionId');
         console.log("questionId : " + questionId);
-        var newVal = $("#" + selectId + "").val();
+        var newVal = $("." + selectId + "").val();
         var IDs= [];
         if(newVal!= null) {
             for(var i = 0; i < newVal.length; i++) {
@@ -274,12 +284,48 @@ $(document).ready(function() {
         } 
     });
     
+    $('body').on('click','.tagSelector', function() {
+        
+    });
+    
     $('body').on('change','.tagSelector', function() {
         var boxId = $(this).attr('boxId');
         $("#"+ boxId +"").find('.btnSubmitTags').attr('disabled',false);
-        var questionId = $("#"+ boxId +"").find('.question').attr('questionId');
         if($(this).val() == null) {
             $("#"+ boxId +"").find('.btnSubmitTags').attr('disabled',true);
         }
     });
+    
+    $('body').on('click','.tagsSelected', function() {
+        var rootBox = $(this).attr('boxId');
+        $("#"+ rootBox +"").find('.fetchedTags').hide();
+        var questionId = $(this).attr('questionId');
+        var manageTags = '<div id="selectorBox"><select data-placeholder="Select related tag(s)" multiple class="tagSelector"></select>\
+        <button id="submitTags" type="button"  class="btn btn-success btnSubmitTags" questionId="'+questionId+'" selectId="tagSelector" parentBox="selectorBox" rootBox="'+rootBox+'">Submit Tags</button></div>';
+        $("#"+ rootBox +"").find('.tagContainer').append(manageTags);
+        
+        var newOption = "";
+        var preselectedTags = $("#"+ rootBox +"").attr('preselectedTags');
+        for(var i = 0; i < preselectedTags.length; i++) {
+            console.log(preselectedTags[i]);
+            $.each(tags, function(index,value) {
+                
+                if(value["id"] == preselectedTags[i]) {
+                    
+                    newOption += '<option id="'+ value["id"] +'" selected>'+ value["name"] +'</option>';
+                }
+                else {
+                    newOption += '<option id="'+ value["id"] +'">'+ value["name"] +'</option>';
+                }
+            });
+        }
+        /*if($('#selectorBox').find('.tagSelector').val() == null)
+            $('#selectorBox').find('.btnSubmitTags').attr('disabled',true);*/
+        $('#selectorBox').find('.tagSelector').append(newOption).chosen({
+                                                                    width: "30%",
+                                                                    no_results_text: "oops! search failed!",
+                                                                    allow_single_deselect: true
+                                                                }).trigger("chosen:updated");
+    });
+    
 });

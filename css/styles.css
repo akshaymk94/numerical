@@ -53,24 +53,26 @@
     background: #eee;
     border: solid 1px #aaa;
     margin: 10px auto;
+    padding: 10px;
 }
 
-.glyphicon-remove {
+.closeQuestionBox {
     position: relative;
     display: inline-block;
     /*float: right;*/
-    margin: 5px 0;
     padding: 5px;
     background: #aaa;
 }
 
-.glyphicon-remove:hover {
+.closeQuestionBox:hover {
     cursor: pointer;
     border: solid 1px #aaa;
     background: red;
     color: #fff;
     -webkit-border-radius: 3px;
 }
+
+
 
 .rendererBox {
     display: block;
@@ -140,4 +142,27 @@
 
 .btnSubmitTags {
     display: inline-block;
+}
+
+.tagsSelected {
+    padding: 3px;
+    background: #93C2FF;
+    color: #fff;
+    margin: 5px 8px 5px 0;
+    -webkit-border-radius: 5px;
+}
+
+.tagsSelected:hover {
+    cursor: pointer;
+}
+
+span.closeTag {
+    padding: 0;
+    margin-left: 2px;
+    
+}
+
+span.closeTag:hover {
+    cursor: pointer;
+    color: red;
 }
