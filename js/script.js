@@ -223,26 +223,24 @@ $(document).ready(function() {
         noOfEditors--;
         if($("#"+sendBackTo+"").hasClass('questionRenderer')) {
             $("#"+rootBox+"").find('.answerRenderer').show();
+            console.log("qn_id : " + questionId);
+            console.log("qn_content : " + textSentBack);
         }
         if($("#"+sendBackTo+"").hasClass('answerRenderer')) {
             $("#"+rootBox+"").find('.explanationRenderer').show();
+            console.log("qn_id : " + questionId);
+            console.log("ans_id : " + elementId);
+            console.log("ans_content : " + textSentBack);
         }
         if($("#"+sendBackTo+"").hasClass('explanationRenderer')) {
             $("#"+sendBackTo+"").hide();
             $("#"+rootBox+"").find('.btnSolution').append('<br>').show();
             $('#addQandABox').attr('disabled',false);
-            /*$("#"+rootBox+"").find('.tagSelector').chosen({
-                width: "30%",
-                no_results_text: "oops! search failed!",
-                allow_single_deselect: true
-            });
-            
-            $("#"+rootBox+"").find('.btnSubmitTags').show();
-            if($("#"+rootBox+"").find('.tagSelector').val() == null) {
-                $("#"+rootBox+"").find('.btnSubmitTags').attr('disabled', true);*
-            }*/
+            console.log("qn_id : " + questionId);
+            console.log("soln_id : " + elementId);
+            console.log("soln_content : " + textSentBack);
         }
-        console.log("questionId : " + questionId + ", " + "elementId : " + elementId + ", " + "textSentBack : " + textSentBack);
+        //console.log("qn_id : " + questionId + ", " + "elementId : " + elementId + ", " + "textSentBack : " + textSentBack);
         $("#" + editorId + "").remove();
     });
     
